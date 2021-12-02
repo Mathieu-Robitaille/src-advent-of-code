@@ -23,6 +23,7 @@ def main():
                 accumulator += 1
             previous = int(line)
         print(f"The number of measurements is : {accumulator}")
-            
+
+
 if __name__ == "__main__":
     main()
