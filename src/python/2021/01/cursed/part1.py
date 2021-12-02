@@ -7,7 +7,4 @@ from itertools import tee, islice
 src = Path(modules['__main__'].__file__).resolve().parent
 input_file_path = Path(src, "input.txt")
 
-bs = 2
-
-print(len([a for a, b in list(zip(*[islice(open(input_file_path, "r").read().split(), x, None) for x in range(bs)])) if int(b) > int(a)]))
-
+print(len([a for a, b in list(zip(*[islice(open(input_file_path, "r").read().split(), x, None) for x in range(2)])) if int(b) > int(a)]))
