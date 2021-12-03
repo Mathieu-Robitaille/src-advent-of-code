@@ -1,4 +1,5 @@
 # Quality of life imports
+from functools import reduce
 from pathlib import Path
 from sys import modules
 
@@ -6,23 +7,15 @@ from sys import modules
 src = Path(modules['__main__'].__file__).resolve().parent
 input_file_path = Path(src, "..", "input.txt")
 
+def f(b):
+    return int(b[b.find(''):])
 
-def main():
-    x, y = 0, 0
-    with open(input_file_path) as f:
-        instructions = f.readlines()
-        for instruction in instructions:
-            s = instruction.rstrip().split()
-            command = s[0]
-            dist = int(s[1])
-            if command == "forward":
-                x += dist
-            elif command == "down":
-                y += dist
-            elif command == "up":
-                y -= dist
-    print(f"The total dist is {x * y}")
+x = lambda b : f(b) if b[0] == "d" else 0
+u = lambda b : -f(b) if b[0] == "u" else 0
+y = lambda b : f(b) if b[0] == "f" else 0
+s = sum
 
-
-if __name__ == "__main__":
-    main()
+with open(input_file_path) as f:
+    i = [_.rstrip() for _ in f.readlines()]
+    d = [list(map(_, i)) for _ in [x, u, y]]
+    print(f"The total dist is:", s(s(_) for _ in d[:-1]) * s(d[-1]))
