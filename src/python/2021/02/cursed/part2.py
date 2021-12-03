@@ -22,7 +22,7 @@ def main():
                 a += dist
             elif command == "up":
                 a -= dist
-    print(x * y)
+    print(f"The total dist is {x * y}")
 
 
 if __name__ == "__main__":
