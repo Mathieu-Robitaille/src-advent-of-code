@@ -1,7 +1,7 @@
+#! ../../../env/bin/python
 # Quality of life imports
 from pathlib import Path
 from sys import modules
-from functools import partial as p
 
 # Quality of life, define the input file location
 src = Path(modules['__main__'].__file__).resolve().parent
