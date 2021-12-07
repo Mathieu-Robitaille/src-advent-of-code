@@ -11,8 +11,8 @@ input_file_path = Path(src, "input.txt")
 helper_location = Path(src, "..", "..", "helpers")
 sys.path.insert(1, helper_location.as_posix())
 
-from peekiter import PeekIter
 from helpies import range_inclusive
+from peekiter import PeekIter
 
 
 def check_spot(x, y, board):
@@ -21,6 +21,7 @@ def check_spot(x, y, board):
         board[(x, y)] = 1
     else:
         board[(x, y)] = 0
+
 
 def generate_points(x1, y1, x2, y2, board):
 
@@ -32,11 +33,14 @@ def generate_points(x1, y1, x2, y2, board):
         x = PeekIter(range_inclusive(*sorted([x1, x2])))
         y = PeekIter(cycle([y1]))
     else:
-        x = PeekIter(range_inclusive(x1, x2)) if x1 < x2 else PeekIter(range_inclusive(x1, x2, -1))
-        y = PeekIter(range_inclusive(y1, y2)) if y1 < y2 else PeekIter(range_inclusive(y1, y2, -1))
+        x = PeekIter(range_inclusive(x1, x2)) if x1 < x2 else PeekIter(
+            range_inclusive(x1, x2, -1))
+        y = PeekIter(range_inclusive(y1, y2)) if y1 < y2 else PeekIter(
+            range_inclusive(y1, y2, -1))
 
     while (x.has_next() and y.has_next()):
         check_spot(next(x), next(y), board)
+
 
 input, board = [], {}
 with open(input_file_path) as f:
@@ -45,4 +49,3 @@ with open(input_file_path) as f:
         generate_points(pos[0], pos[1], pos[2], pos[3], board)
 
 print(sum(board.values()))
-

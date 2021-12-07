@@ -1,10 +1,16 @@
 # Quality of life imports
+from helpies import range_inclusive
 from pathlib import Path
-from sys import modules
+import sys
 
 # Quality of life, define the input file location
-src = Path(modules['__main__'].__file__).resolve().parent
+src = Path(sys.modules['__main__'].__file__).resolve().parent
 input_file_path = Path(src, "input.txt")
+
+# Import helper functions
+helper_location = Path(src, "..", "..", "helpers")
+sys.path.insert(1, helper_location.as_posix())
+
 
 def check_spot(x, y, board):
     if (x, y) in board:
@@ -13,8 +19,6 @@ def check_spot(x, y, board):
     else:
         board[(x, y)] = 0
 
-def range_inclusive(start, end):
-    return range(start, end + 1)
 
 def generate_points(x1, y1, x2, y2, board):
     if x1 == x2:
@@ -29,7 +33,6 @@ def generate_points(x1, y1, x2, y2, board):
         for i in x:
             for j in y:
                 check_spot(i, j, board)
-    
 
 
 input, board = [], {}
@@ -41,5 +44,3 @@ with open(input_file_path) as f:
 
 print(sum(board.values()))
 # Fuck diags for now eh?
-
-
