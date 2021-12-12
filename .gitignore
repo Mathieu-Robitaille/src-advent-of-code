@@ -1,7 +1,7 @@
 # Ignore python envs
 **/env
 **/.idea
-
+**/__pycache__/
 # Generated files
 **/target
 
