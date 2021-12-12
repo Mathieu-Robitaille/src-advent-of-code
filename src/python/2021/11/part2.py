@@ -10,7 +10,7 @@ from functools import reduce
 src = Path(modules['__main__'].__file__).resolve().parent
 input_file_path = Path(src, "input.txt")
 
-
+num_arrays_generated = 0
 matrix = np.genfromtxt(input_file_path, delimiter=1)
 
 def create_increase_matrix(index, shape):
@@ -18,6 +18,10 @@ def create_increase_matrix(index, shape):
     Create a +2 oversized matrix so that a 3x3 matrix can have the correct shape for it's position
     then take the [1:-1] slice of it in both dirs.
     """
+
+    # For the memes, how many times are we calling this?
+    global num_arrays_generated
+    num_arrays_generated += 1
 
     # Matrix representing the modification to the base matrix
     # 3x3 hollow "ones"
@@ -60,6 +64,7 @@ while not kill_loop:
             matrix = matrix + cm
     matrix = np.where(matrix > 9, 0, matrix)
 
-print(matrix)
-print(steps)
+# print(matrix)
+print(f"We can find a path in {steps} steps.")
+print(f"We generated {num_arrays_generated} matricies.")
 
