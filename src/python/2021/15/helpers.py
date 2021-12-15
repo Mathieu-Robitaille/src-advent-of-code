@@ -28,9 +28,6 @@ BLUE = (0, 0, 255)
 GREY = (185, 185, 185)
 WHITE = (255, 255, 255)
 
-def modify_value(value, pos):
-    return
-
 class World:
     def __init__(self, source: str):
         self.cells = [Cell(idx, element) for idx, element in enumerate(source)]
