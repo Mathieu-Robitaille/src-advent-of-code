@@ -11,7 +11,12 @@ fn main() {
             .expect("")
     })
     .collect::<Vec<_>>();
-    let sum: i32 = i32_inp.windows(2)
+    let sums: Vec<i32> = i32_inp
+        .windows(3)
+        .map(|vals| vals.iter().sum::<i32>())
+        .collect::<Vec<i32>>();
     
+    let sum: i32 = sums.windows(2).map(|vals| (vals[0] < vals[1]) as i32).sum();
+
     println!("The result is: {:?}", sum)
 }

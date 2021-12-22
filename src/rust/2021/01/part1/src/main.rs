@@ -8,9 +8,9 @@ fn main() {
     .lines()
     .map(|line| {
         line.parse::<i32>()
-            .expect("")
-    })
+            .expect("")})
     .collect::<Vec<_>>();
+
     let mut sum: i32 = 0;
     for i in 1..=i32_inp.len() - 1 { 
         if i32_inp[i - 1] < i32_inp[i] {
